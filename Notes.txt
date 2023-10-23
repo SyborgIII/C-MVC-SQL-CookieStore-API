@@ -1,0 +1,22 @@
+-VIDEO TO WATCH: # 99 (Started Angular Portion!!!!!) Make sure to take a seperate angular tutorial. 
+-[BindProperty] does not work with HttpGet by default YOU MUST use the (SupportsGet = true)
+-by default, if i pass data using queary strings, the order does not matter. If i define the route and pass data in the url, the order matters. Ex: [HttpGet("{name}/{area}")]
+-by default, if the API is expecting complex data, like an object, it will look at the body for data. if the API is looking for prmiative type, it will look at the URL
+-when setting up an API use the [FromQuery],[FromBody], and [FromForm] and attach them to the params
+-custom model biner take a bunch of configuring to use. proceed with caution but is imortant [ModelBinder(typeof(CustomBinder))] 
+-* when adding a service make sure to add the service in the startup page
+-* VIDEO: 77 | when adding a singlton service use the sintax services.AddSingleton<IProductRepository, ProductRepository>(); first param is for the name of the interface, and the second param is for where it is implemented. singleton service is used only once in the application, a singlton service makes sure that all the API calls share the same service. this allows for only one insatnce to be created and shard amongst all API calls. this is one way to add to the same list. once the application is shut down, the data will be lost 
+-you can use addScoped with syntax services.AddScoped<IProductRepository, ProductRepository>(); data is not shared amongst API calls with this method
+-you can use add transient with the sytax services.AddTransient<IProductRepository, ProductRepository>();
+-* VIDEO: 80 | when registering services in the Starup class (or something different in later versions) if you register it multiple times with different implentations, the last one registered will overide all other services. the try version of registering will take the first registration and ignore the rest
+- the |[FromService] IServiceInterfaceName ServiceName| syntax can be used to inject dependency into an action method rrather than the constructor of a class
+- * VIDEO 85 | when setting up Entity framework with code first approach, doe these steps, set up place for database model, set up a contesxt based on modle and have it inherit the DbContext class, in the contructor pass the options and attach to base, set up the DbSet<Db_Name>, then overide on configuring for setting up the conection string OR do it in start up when adding the service, finally add the context you created as a service with servcies.AddDbContext<ContextName> you can set the conection string options here if you want, YES YOU WANT TO,
+-it is best to set up the conectionstrings in the appsettings.json, give the conection string object you create a neame and pass that name in the startup options service and pass that name 
+- * VIDEO 87 | when initializing the database using entity framework use the nuget package console. add-migration init will make the changes to a migration, update-database will make the chnages  
+- * VIDEO 88 | after setting up the migration use depedency injection of the context into the models. data pipeline so far SQL->Data->Model
+- high level data pipeline SQL -> Database Model -> Application Model -> Model Transformation Class (the repositories with update to interface) -> update to controller -> DONE (i think hook up earlier is important), the repository class were the data transformation occures is where most of the SQL query logic will be stored. 
+- when adding HttpPatch functionality, add the services.AddControllers().AddNewtonsoftJson() to the statup class, under configure services 
+- * VIDEO 93 | make sure when using the HttpPatch, the body needs to be n the form of JSON list of objects, you must download newtonsoft.mvc.json and asp.netcore json newtonsoft, use the json objects instead of the regular SQL obcject (cookie)
+- * VIDEO 96 | use the auto mapper for mapping between the datbase model and application model. 
+- * VIDEO 99 | this video handeles the cors issue and some angular. rewatch video but jyst is you must resolve cors to make the calls
+
