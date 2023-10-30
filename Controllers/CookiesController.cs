@@ -12,6 +12,7 @@ namespace CookieStore.Api.Controllers
     [ApiController]
     public class CookiesController : ControllerBase
     {
+        int test = 20;
         public readonly ICookieRepository cookieRepository;
         public CookiesController(ICookieRepository cookieRepository)
         {
